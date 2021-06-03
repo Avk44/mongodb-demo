@@ -18,17 +18,16 @@ public class Bootstrap {
 
     @PostConstruct
     public void init(){
-        Address addressDiego = Address.builder().country("Belgium").city("Brussels").postCode("1020").build();
+        Address addressSarah= Address.builder().country("Belgium").city("Brussels").postCode("1040").build();
         Student student = Student.builder()
-                .firstName("Diego")
-                .lastName("Bonucci")
-                .email("diego@mail.com")
-                .gender(Gender.MALE)
-                .address(addressDiego)
-                .favouriteSubjects(List.of("Math","Chemistry"))
+                .firstName("Sarah")
+                .lastName("Parker")
+                .email("parker@gmail.com")
+                .gender(Gender.FEMALE)
+                .address(addressSarah)
+                .favouriteSubjects(List.of("Math","Chemistry","History"))
                 .totalSpentInBooks(BigDecimal.TEN)
                 .created(LocalDateTime.now()).build();
         studentService.saveStudent(student);
-
     }
 }

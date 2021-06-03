@@ -4,7 +4,6 @@ import be.multimedi.mongodbdemo.model.Student;
 import be.multimedi.mongodbdemo.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -20,6 +19,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void saveStudent(Student student) {
-        studentRepository.save(student);
+        studentRepository.findStudentByEmail(student.getEmail())
+                .ifPresentOrElse(s -> {
+                    System.out.printf("%s %s already exist.", s.getFirstName(), s.getLastName());
+                },() ->{
+                    System.out.printf("Inserting student %s %s.",student.getFirstName(), student.getLastName());
+                    studentRepository.save(student);
+                });
     }
 }
