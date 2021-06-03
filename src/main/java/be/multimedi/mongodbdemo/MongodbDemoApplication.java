@@ -20,22 +20,4 @@ public class MongodbDemoApplication {
 
         SpringApplication.run(MongodbDemoApplication.class, args);
     }
-    @Bean
-    CommandLineRunner runner(StudentRepository studentRepository){
-        return args -> {
-            Address addressMary = Address.builder().country("Belgium").city("Brussels").postCode("1000").build();
-            Student student = Student.builder()
-                    .firstName("Mary")
-                    .lastName("Forlan")
-                    .email("mary@mail.com")
-                    .gender(Gender.FEMALE)
-                    .address(addressMary)
-                    .favouriteSubjects(List.of("Math","Chemistry"))
-                    .totalSpentInBooks(BigDecimal.TEN)
-                    .created(LocalDateTime.now()).build();
-
-            studentRepository.insert(student);
-        };
-    }
-
 }
