@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void saveStudent(Student student) {
+    public Student saveStudent(Student student) {
         studentRepository.findStudentByEmail(student.getEmail())
                 .ifPresentOrElse(s -> {
                     System.out.printf("%s %s already exist.", s.getFirstName(), s.getLastName());
@@ -26,5 +26,7 @@ public class StudentServiceImpl implements StudentService {
                     System.out.printf("Inserting student %s %s.",student.getFirstName(), student.getLastName());
                     studentRepository.save(student);
                 });
+
+        return student;
     }
 }

@@ -3,9 +3,9 @@ package be.multimedi.mongodbdemo.controller;
 import be.multimedi.mongodbdemo.model.Student;
 import be.multimedi.mongodbdemo.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -17,5 +17,10 @@ public class StudentController {
     @GetMapping("/students")
     public List<Student> fetchAllStudents(){
         return studentService.getAllStudents();
+    }
+
+    @PostMapping("/student")
+    public ResponseEntity<Student> saveStudent(@RequestBody Student student){
+        return new ResponseEntity(studentService.saveStudent(student), HttpStatus.CREATED);
     }
 }
