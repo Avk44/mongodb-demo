@@ -23,4 +23,9 @@ public class StudentController {
     public ResponseEntity<Student> saveStudent(@RequestBody Student student){
         return new ResponseEntity(studentService.saveStudent(student), HttpStatus.CREATED);
     }
+
+    @GetMapping("/student/{email}")
+    public ResponseEntity<Student> saveStudent(@PathVariable String email){
+        return ResponseEntity.ok(studentService.getStudentByEmail(email));
+    }
 }
