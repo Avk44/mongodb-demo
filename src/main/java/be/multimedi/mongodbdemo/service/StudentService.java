@@ -10,4 +10,6 @@ public interface StudentService {
     Student saveStudent(Student student);
 
     Student getStudentByEmail(String email);
+
+    void deleteStudentByEmail(String email);
 }

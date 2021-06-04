@@ -34,4 +34,10 @@ public class StudentServiceImpl implements StudentService {
     public Student getStudentByEmail(String email) {
         return studentRepository.findStudentByEmail(email).get();
     }
+
+    @Override
+    public void deleteStudentByEmail(String email) {
+        Student deleteStudent = getStudentByEmail(email);
+        studentRepository.delete(deleteStudent);
+    }
 }

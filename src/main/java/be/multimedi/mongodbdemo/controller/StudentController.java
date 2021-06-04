@@ -28,4 +28,10 @@ public class StudentController {
     public ResponseEntity<Student> saveStudent(@PathVariable String email){
         return ResponseEntity.ok(studentService.getStudentByEmail(email));
     }
+
+    @DeleteMapping("/student/{email}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable String email){
+        studentService.deleteStudentByEmail(email);
+        return ResponseEntity.noContent().build();
+    }
 }
